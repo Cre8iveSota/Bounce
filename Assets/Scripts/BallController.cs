@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
     public int currentOwner;
     public enum OwnerName : int { NoOne = 0, Player = 1, Enemy = 2 }
     public bool isAtackingEnemy, isAtackingPlayer;
+
     [SerializeField] private GameObject vfxPlayer, vfxEnemy;
 
     [SerializeField] private GameObject player, enemy;
@@ -54,6 +55,13 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         rigidBody.velocity = rigidBody.velocity.normalized * Speed * Time.deltaTime;
+        if (collision.gameObject.tag == "wall")
+        {
+            isAtackingEnemy = false;
+            vfxPlayer.SetActive(false);
+            isAtackingPlayer = false;
+            vfxEnemy.SetActive(false);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -93,13 +101,6 @@ public class Ball : MonoBehaviour
                 Debug.Log("Danege kurae");
                 gameManager.Damage(false);
             }
-        }
-        else if (other.gameObject.tag == "wall")
-        {
-            isAtackingEnemy = false;
-            vfxPlayer.SetActive(false);
-            isAtackingPlayer = false;
-            vfxEnemy.SetActive(false);
         }
     }
 }

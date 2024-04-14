@@ -1244,7 +1244,6 @@ GameObject:
   - component: {fileID: 1059791207}
   - component: {fileID: 1059791206}
   - component: {fileID: 1059791205}
-  - component: {fileID: 1059791209}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: wall
@@ -1338,27 +1337,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 436597868}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1059791209
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059791204}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1256429094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,7 +1496,6 @@ GameObject:
   - component: {fileID: 1319031409}
   - component: {fileID: 1319031413}
   - component: {fileID: 1319031414}
-  - component: {fileID: 1319031415}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -1665,27 +1642,6 @@ MonoBehaviour:
   normalMt: {fileID: 2100000, guid: dc6e43692c4f94346a765dfddf54236c, type: 2}
   enemyMt: {fileID: 2100000, guid: 90ff5ed1a843f40afbf8cd85532f5c8e, type: 2}
   playerMt: {fileID: 2100000, guid: cdaf01070e08e4dd2b674f35d228ca1e, type: 2}
---- !u!135 &1319031415
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319031408}
-  m_Material: {fileID: 13400000, guid: 303bfd98adbcf4fd08831e6935ba798a, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1692246414
 GameObject:
   m_ObjectHideFlags: 0
