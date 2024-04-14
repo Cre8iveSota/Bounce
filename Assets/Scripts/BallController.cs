@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -20,12 +19,15 @@ public class Ball : MonoBehaviour
     GameManager gameManager;
     void Start()
     {
+        Direction = new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
         renderer = GetComponent<Renderer>();
         normalMt = renderer.material;
         currentOwner = (int)OwnerName.NoOne;
         gameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
         rigidBody = GetComponent<Rigidbody>();
         rigidBody.AddForce(Direction.normalized * Speed * Time.deltaTime, ForceMode.Impulse);
+        if (enemy == null) enemy = GameObject.FindGameObjectWithTag("Enemy").gameObject;
+        if (player == null) player = GameObject.FindGameObjectWithTag("Player").gameObject;
     }
     private void Update()
     {

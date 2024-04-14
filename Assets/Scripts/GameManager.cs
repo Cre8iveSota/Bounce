@@ -10,12 +10,31 @@ public class GameManager : MonoBehaviour
     private float yourCurrentHp, enemyCurrentHp;
     [SerializeField] private float yourMaxHp = 10;
     [SerializeField] private float enemyMaxHp = 10;
+    [SerializeField] GameObject ballObj, gameClearPanel, gameOverPanel;
+    float time;
+    private float nextBallTime = 1;
+    private void Awake()
+    {
+        Instantiate(ballObj, new Vector3(Random.Range(-13, 12), 1, Random.Range(-8, 7)), Quaternion.identity);
+    }
     void Start()
     {
+        time = 0;
         yourCurrentHp = yourMaxHp;
         enemyCurrentHp = enemyMaxHp;
         this.ImgsFDplayer.SetValue(yourCurrentHp / yourMaxHp, false);
         this.ImgsFDenemy.SetValue(enemyCurrentHp / enemyMaxHp, false);
+        gameClearPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+    }
+    private void Update()
+    {
+        if (isGameEnd) return;
+        time += Time.deltaTime;
+        if (time < 3 * nextBallTime) return;
+        time = 0;
+        nextBallTime *= 2f;
+        Instantiate(ballObj, new Vector3(Random.Range(-13, 12), 1, Random.Range(-8, 7)), Quaternion.identity);
     }
     public void LoadScene(string sceneName)
     {
@@ -44,7 +63,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("pl hp: " + yourCurrentHp);
             this.ImgsFDplayer.SetValue(yourCurrentHp / yourMaxHp);
 
-            if (yourCurrentHp == 0) { isGameEnd = true; }
+            if (yourCurrentHp == 0)
+            {
+                gameOverPanel.SetActive(true);
+                isGameEnd = true;
+            }
         }
         else
         {
@@ -53,7 +76,11 @@ public class GameManager : MonoBehaviour
             Debug.Log("en hp: " + enemyCurrentHp);
             this.ImgsFDenemy.SetValue(enemyCurrentHp / enemyMaxHp);
 
-            if (enemyCurrentHp == 0) { isGameEnd = true; }
+            if (enemyCurrentHp == 0)
+            {
+                gameClearPanel.SetActive(true);
+                isGameEnd = true;
+            }
         }
     }
 }
