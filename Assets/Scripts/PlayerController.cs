@@ -4,19 +4,44 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 1;
+    public ImgsFillDynamic staminaGauge;
+    [SerializeField] private float originalMoveSpeed = 15;
+    [SerializeField] private float currentStamina;
+    private float maxStamina = 10;
+    private float moveSpeed;
+    private int speedDashRate;
+    bool canRun = true;
     GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
+        currentStamina = maxStamina;
+        staminaGauge.SetValue(currentStamina / maxStamina);
         gameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        canRun = currentStamina / maxStamina > 0 ? true : false;
         if (gameManager.isGameEnd) return;
         #region PLAYER MOVEMENT
+        if (Input.GetKey(KeyCode.Mouse0) && canRun)
+        {
+            speedDashRate = 3;
+            UpdateStamina(false);
+        }
+        else if (Input.GetKey(KeyCode.Mouse0) && !canRun)
+        {
+            speedDashRate = 1;
+            currentStamina = 0;
+        }
+        else if (!Input.GetKey(KeyCode.Mouse0))
+        {
+            speedDashRate = 1;
+            UpdateStamina(true);
+        }
+        moveSpeed = originalMoveSpeed * speedDashRate;
         // Move the player w/ keyboard
         Vector3 direction = new Vector3(0, 0, 0);
         direction.x = Input.GetAxisRaw("Horizontal");
@@ -45,5 +70,15 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -9);
         }
+    }
+
+    private void UpdateStamina(bool increase)
+    {
+        float changeSpeed = increase ? 2f : -5f;
+        currentStamina += changeSpeed * Time.deltaTime;
+
+        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+
+        staminaGauge.SetValue(currentStamina / maxStamina, true);
     }
 }

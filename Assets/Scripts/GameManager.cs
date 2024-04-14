@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public ImgsFillDynamic ImgsFDplayer, ImgsFDenemy;
     public bool isGameEnd;
-    private int yourCurrentHp, enemyCurrentHp, yourMaxHp, enemyMaxHp;
-    [SerializeField] private int yourHp = 10;
-    [SerializeField] private int enemyHp = 10;
+    private float yourCurrentHp, enemyCurrentHp;
+    [SerializeField] private float yourMaxHp = 10;
+    [SerializeField] private float enemyMaxHp = 10;
     void Start()
     {
-        yourMaxHp = yourHp;
-        enemyMaxHp = enemyHp;
-
         yourCurrentHp = yourMaxHp;
         enemyCurrentHp = enemyMaxHp;
+        this.ImgsFDplayer.SetValue(yourCurrentHp / yourMaxHp, false);
+        this.ImgsFDenemy.SetValue(enemyCurrentHp / enemyMaxHp, false);
     }
     public void LoadScene(string sceneName)
     {
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
             if (isGameEnd) return;
             yourCurrentHp--;
             Debug.Log("pl hp: " + yourCurrentHp);
+            this.ImgsFDplayer.SetValue(yourCurrentHp / yourMaxHp);
 
             if (yourCurrentHp == 0) { isGameEnd = true; }
         }
@@ -50,6 +51,8 @@ public class GameManager : MonoBehaviour
             if (isGameEnd) return;
             enemyCurrentHp--;
             Debug.Log("en hp: " + enemyCurrentHp);
+            this.ImgsFDenemy.SetValue(enemyCurrentHp / enemyMaxHp);
+
             if (enemyCurrentHp == 0) { isGameEnd = true; }
         }
     }
