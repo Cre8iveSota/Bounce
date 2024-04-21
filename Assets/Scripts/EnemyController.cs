@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     Vector3 direction;
-    float moveSpeed = 15;
+    float moveSpeed = 12;
     private float nearestBallDistance = float.MaxValue;
     private float time;
     GameObject[] balls;
@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
         }
         transform.position += direction.normalized * moveSpeed * Time.deltaTime;
 
-        if (time > 3) { targetBall = GetNearBall(); time = 0; }
+        if (time > 2f) { targetBall = GetNearBall(); time = 0; }
     }
 
     private GameObject GetNearBall()

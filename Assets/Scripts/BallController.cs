@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public float Speed = 2000f;
+    public float Speed = 1000;
     public int currentOwner;
     public enum OwnerName : int { NoOne = 0, Player = 1, Enemy = 2 }
     public bool isAtackingEnemy, isAtackingPlayer;
@@ -40,18 +40,18 @@ public class Ball : MonoBehaviour
         if (isAtackingEnemy)
         {
             vfxPlayer.SetActive(true);
-            velocity = unitVector * 40;
+            velocity = unitVector * 20;
             rigidBody.velocity = velocity;
         }
         else if (isAtackingPlayer)
         {
             vfxEnemy.SetActive(true);
-            velocity = unitVector * 40;
+            velocity = unitVector * 20;
             rigidBody.velocity = velocity;
         }
         else
         {
-            rigidBody.velocity += Vector3.up * 5f * Time.deltaTime;
+            rigidBody.velocity += Vector3.up * 2f * Time.deltaTime;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -67,7 +67,7 @@ public class Ball : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.tag == "Player")
         {
             if (currentOwner == (int)OwnerName.Player)
             {
@@ -85,7 +85,7 @@ public class Ball : MonoBehaviour
                 gameManager.Damage(true);
             }
         }
-        else if (other.gameObject.name == "Enemy")
+        else if (other.gameObject.tag == "Enemy")
         {
             if (currentOwner == (int)OwnerName.Enemy)
             {

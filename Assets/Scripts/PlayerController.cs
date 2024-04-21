@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public ImgsFillDynamic staminaGauge;
-    [SerializeField] private float originalMoveSpeed = 15;
+    [SerializeField] private float originalMoveSpeed = 7.5f;
     [SerializeField] private float currentStamina;
     private float maxStamina = 10;
     private float moveSpeed;

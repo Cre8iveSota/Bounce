@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c09b67d41a9c44a2d86f4a529ad0c4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2000
+  Speed: 800
   currentOwner: 0
   isAtackingEnemy: 0
   isAtackingPlayer: 0
