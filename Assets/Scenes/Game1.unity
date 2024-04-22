@@ -457,7 +457,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &208368022
 MonoBehaviour:
@@ -1103,6 +1103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balls: []
   particleSystem: {fileID: 1006579242}
+  isAttached: 0
 --- !u!1 &671176488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,7 +1780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &980810158
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1847,7 +1848,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980810157}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.70090926, y: 0, z: 0, w: 0.7132505}
   m_LocalPosition: {x: 0, y: 25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3565,7 +3566,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1614306159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3584,8 +3585,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1939593463}
+  m_LookAt: {fileID: 1939593463}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60.000004
     OrthographicSize: 5
@@ -3613,7 +3614,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614306158}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.70090926, y: -0, z: -0, w: 0.7132505}
   m_LocalPosition: {x: 0, y: 83.33333, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4344,6 +4345,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: spider
       objectReference: {fileID: 0}
+    - target: {fileID: 2452651109099438608, guid: 2cd81c8a7a42b47d4a87f292810f9e57, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803301286924935484, guid: 2cd81c8a7a42b47d4a87f292810f9e57, type: 3}
+      propertyPath: m_TagString
+      value: string
+      objectReference: {fileID: 0}
     - target: {fileID: 3146617372448239741, guid: 2cd81c8a7a42b47d4a87f292810f9e57, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4394,6 +4403,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6203094948265683322, guid: 2cd81c8a7a42b47d4a87f292810f9e57, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6597532484017017591, guid: 2cd81c8a7a42b47d4a87f292810f9e57, type: 3}
+      propertyPath: CollisionModule.collisionMessages
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7894376480553184694, guid: 2cd81c8a7a42b47d4a87f292810f9e57, type: 3}

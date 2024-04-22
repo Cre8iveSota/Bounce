@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class StringEffect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    BallController ballController;
+    StringAttach stringAttach;
+    private void Start()
     {
-        
+        stringAttach = GameObject.FindGameObjectWithTag("Player").GetComponent<StringAttach>();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnParticleCollision(GameObject obj)
     {
-        
+        Debug.Log("Particle collided with: " + obj.name);
+        if (obj.tag == "string")
+        {
+            stringAttach.isAttached = true;
+            ballController = GetComponent<BallController>();
+            ballController.isPermittedExControl = true;
+        }
     }
 }

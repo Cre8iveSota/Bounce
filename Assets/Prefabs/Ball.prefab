@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8144611626652724565}
   - component: {fileID: 5195639121709431049}
   - component: {fileID: 3177759323908126679}
+  - component: {fileID: 1799082839214528796}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -160,6 +161,19 @@ MonoBehaviour:
   normalMt: {fileID: 2100000, guid: dc6e43692c4f94346a765dfddf54236c, type: 2}
   enemyMt: {fileID: 2100000, guid: 90ff5ed1a843f40afbf8cd85532f5c8e, type: 2}
   playerMt: {fileID: 2100000, guid: cdaf01070e08e4dd2b674f35d228ca1e, type: 2}
+  isPermittedExControl: 0
+--- !u!114 &1799082839214528796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225489192274967098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2430dfa2593d492f89d4189dfd9fdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6867665549835056959
 GameObject:
   m_ObjectHideFlags: 0

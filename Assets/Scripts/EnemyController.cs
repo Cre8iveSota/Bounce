@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
     {
         time += Time.deltaTime;
         gameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
-        if (!targetBall.GetComponent<Ball>().isAtackingEnemy)
+        if (!targetBall.GetComponent<BallController>().isAtackingEnemy)
         {
             direction = gameManager.CalcurateUnitVector(targetBall.transform.position, this.transform.position);
         }

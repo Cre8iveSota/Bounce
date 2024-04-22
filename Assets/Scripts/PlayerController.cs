@@ -48,7 +48,12 @@ public class PlayerController : MonoBehaviour
         direction.z = Input.GetAxisRaw("Vertical");
         direction = Vector3.ClampMagnitude(direction, 1f);
         transform.position += direction * moveSpeed * Time.deltaTime;
-        RestrectionMovement();
+        // RestrectionMovement();
+
+        if (direction != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
         #endregion
     }
 
@@ -80,5 +85,13 @@ public class PlayerController : MonoBehaviour
         currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
 
         staminaGauge.SetValue(currentStamina / maxStamina, true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("wall"))
+        {
+            transform.position = transform.position - transform.forward * .5f; // forward 方向に少し戻る
+        }
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - wall
   - Ball
+  - string
   layers:
   - Default
   - TransparentFX

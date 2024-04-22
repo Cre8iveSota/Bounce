@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class BallController : MonoBehaviour
 {
     public float Speed = 1000;
     public int currentOwner;
@@ -17,6 +17,7 @@ public class Ball : MonoBehaviour
     private Vector3 unitVector, velocity;
     private Rigidbody rigidBody;
     GameManager gameManager;
+    public bool isPermittedExControl;
     void Start()
     {
         Direction = new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
@@ -37,16 +38,22 @@ public class Ball : MonoBehaviour
             return;
         }
 
+        if (isPermittedExControl)
+        {
+            rigidBody.velocity = Vector3.zero;
+            return;
+        }
+
         if (isAtackingEnemy)
         {
             vfxPlayer.SetActive(true);
-            velocity = unitVector * 20;
+            velocity = unitVector * 40;
             rigidBody.velocity = velocity;
         }
         else if (isAtackingPlayer)
         {
             vfxEnemy.SetActive(true);
-            velocity = unitVector * 20;
+            velocity = unitVector * 40;
             rigidBody.velocity = velocity;
         }
         else
