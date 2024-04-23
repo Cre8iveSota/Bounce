@@ -161,7 +161,8 @@ MonoBehaviour:
   normalMt: {fileID: 2100000, guid: dc6e43692c4f94346a765dfddf54236c, type: 2}
   enemyMt: {fileID: 2100000, guid: 90ff5ed1a843f40afbf8cd85532f5c8e, type: 2}
   playerMt: {fileID: 2100000, guid: cdaf01070e08e4dd2b674f35d228ca1e, type: 2}
-  isPermittedExControl: 0
+  isPermittedControlPlayer: 0
+  isPermittedControlEnemy: 0
 --- !u!114 &1799082839214528796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2430dfa2593d492f89d4189dfd9fdbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  ball: {fileID: 0}
 --- !u!1 &6867665549835056959
 GameObject:
   m_ObjectHideFlags: 0

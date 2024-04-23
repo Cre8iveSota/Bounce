@@ -17,30 +17,30 @@ public class EnemyController : MonoBehaviour
     {
         time = 0;
         gameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
-        targetBall = GetNearBall();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.isGameEnd) return;
         time += Time.deltaTime;
-        gameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
-        if (!targetBall.GetComponent<BallController>().isAtackingEnemy)
+        if (targetBall != null && !targetBall.GetComponent<BallController>().isAtackingEnemy)
         {
             direction = gameManager.CalcurateUnitVector(targetBall.transform.position, this.transform.position);
         }
-        else
+        else if (targetBall != null)
         {
             direction = -gameManager.CalcurateUnitVector(targetBall.transform.position, this.transform.position);
         }
         transform.position += direction.normalized * moveSpeed * Time.deltaTime;
 
-        if (time > 2f) { targetBall = GetNearBall(); time = 0; }
+        if (time > 1f) { targetBall = GetNearBall(); time = 0; }
     }
 
     private GameObject GetNearBall()
     {
         balls = GameObject.FindGameObjectsWithTag("Ball");
+        nearestBallDistance = float.MaxValue;
         for (int i = 0; i < balls.Length; i++)
         {
             float diff = Vector3.Distance(balls[i].transform.position, transform.position);

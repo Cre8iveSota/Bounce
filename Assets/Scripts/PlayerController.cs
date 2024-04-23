@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public ImgsFillDynamic staminaGauge;
     [SerializeField] private float originalMoveSpeed = 7.5f;
-    [SerializeField] private float currentStamina;
+    public float currentStamina;
     private float maxStamina = 10;
     private float moveSpeed;
     private int speedDashRate;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0) && canRun)
         {
             speedDashRate = 3;
-            UpdateStamina(false);
+            UpdateStamina(false, 0);
         }
         else if (Input.GetKey(KeyCode.Mouse0) && !canRun)
         {
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         else if (!Input.GetKey(KeyCode.Mouse0))
         {
             speedDashRate = 1;
-            UpdateStamina(true);
+            UpdateStamina(true, 0);
         }
         moveSpeed = originalMoveSpeed * speedDashRate;
         // Move the player w/ keyboard
@@ -77,9 +77,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void UpdateStamina(bool increase)
+    public void UpdateStamina(bool increase, float skillcost)
     {
         float changeSpeed = increase ? 2f : -5f;
+        if (skillcost != 0f)
+        {
+            changeSpeed = skillcost;
+        }
         currentStamina += changeSpeed * Time.deltaTime;
 
         currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);

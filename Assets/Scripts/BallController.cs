@@ -7,7 +7,7 @@ public class BallController : MonoBehaviour
     public enum OwnerName : int { NoOne = 0, Player = 1, Enemy = 2 }
     public bool isAtackingEnemy, isAtackingPlayer;
 
-    [SerializeField] private GameObject vfxPlayer, vfxEnemy;
+    public GameObject vfxPlayer, vfxEnemy;
 
     [SerializeField] private GameObject player, enemy;
 
@@ -17,7 +17,7 @@ public class BallController : MonoBehaviour
     private Vector3 unitVector, velocity;
     private Rigidbody rigidBody;
     GameManager gameManager;
-    public bool isPermittedExControl;
+    public bool isPermittedControlPlayer, isPermittedControlEnemy;
     void Start()
     {
         Direction = new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
@@ -38,7 +38,7 @@ public class BallController : MonoBehaviour
             return;
         }
 
-        if (isPermittedExControl)
+        if (isPermittedControlPlayer)
         {
             rigidBody.velocity = Vector3.zero;
             return;
@@ -83,8 +83,7 @@ public class BallController : MonoBehaviour
             }
             else if (isAtackingPlayer == false)
             {
-                renderer.material = playerMt;
-                currentOwner = (int)OwnerName.Player;
+                ChangeOwnerPlayer(true);
             }
             else
             {
@@ -102,14 +101,27 @@ public class BallController : MonoBehaviour
             }
             else if (isAtackingEnemy == false)
             {
-                renderer.material = enemyMt;
-                currentOwner = (int)OwnerName.Enemy;
+                ChangeOwnerPlayer(false);
             }
             else
             {
                 Debug.Log("Danege kurae");
                 gameManager.Damage(false);
             }
+        }
+    }
+
+    public void ChangeOwnerPlayer(bool isPlayerBall)
+    {
+        if (isPlayerBall)
+        {
+            renderer.material = playerMt;
+            currentOwner = (int)OwnerName.Player;
+        }
+        else
+        {
+            renderer.material = enemyMt;
+            currentOwner = (int)OwnerName.Enemy;
         }
     }
 }

@@ -12,10 +12,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float enemyMaxHp = 10;
     [SerializeField] GameObject ballObj, gameClearPanel, gameOverPanel;
     float time;
-    private float nextBallTime = 1;
+    private float nextBallTime = 0.5f;
     private void Awake()
     {
-        Instantiate(ballObj, new Vector3(Random.Range(-13, 12), 1, Random.Range(-8, 7)), Quaternion.identity);
+        // Instantiate(ballObj, new Vector3(Random.Range(-13, 12), 1, Random.Range(-8, 7)), Quaternion.identity);
     }
     void Start()
     {
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         time += Time.deltaTime;
         if (time < 3 * nextBallTime) return;
         time = 0;
-        nextBallTime *= 2f;
+        nextBallTime *= 4f;
         Instantiate(ballObj, new Vector3(Random.Range(-13, 12), 1, Random.Range(-8, 7)), Quaternion.identity);
     }
     public void LoadScene(string sceneName)
