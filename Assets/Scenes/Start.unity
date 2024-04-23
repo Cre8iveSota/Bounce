@@ -672,7 +672,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2079536841}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: Utilities, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
@@ -680,7 +680,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Game1
+          m_StringArgument: CharacterSelection
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1186546133
@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 2079536840}
   - component: {fileID: 2079536841}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: Utilties
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,7 +896,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2079536839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f51f6fac04d1a41798c646d8ad6e2e51, type: 3}
+  m_Script: {fileID: 11500000, guid: 1de3563342de442ebb0b6701b7098734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2138368051
