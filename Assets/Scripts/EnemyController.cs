@@ -32,6 +32,10 @@ public class EnemyController : MonoBehaviour
         {
             direction = -gameManager.CalcurateUnitVector(targetBall.transform.position, this.transform.position);
         }
+        if (direction != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
         transform.position += direction.normalized * moveSpeed * Time.deltaTime;
 
         if (time > 1f) { targetBall = GetNearBall(); time = 0; }
@@ -51,5 +55,13 @@ public class EnemyController : MonoBehaviour
             }
         }
         return nearestBall;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("wall"))
+        {
+            transform.position = transform.position - transform.forward * 1f; // forward 方向に少し戻る
+        }
     }
 }

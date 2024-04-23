@@ -12,6 +12,7 @@ public class ChooseCharacterMangaer : MonoBehaviour
     [SerializeField] private Sprite[] characterSourceImg = new Sprite[3];
     [SerializeField] private GameObject[] characterButtons = new GameObject[3];
     [SerializeField] private TMP_Text cautionText, Explanation;
+    [SerializeField] private GameObject characterDataTransfer;
     public static List<int> buttonStatus = new List<int>();
     // Start is called before the first frame update
     void Start()
@@ -28,10 +29,12 @@ public class ChooseCharacterMangaer : MonoBehaviour
 
     }
 
-    public void ChoseCharacter(int characterNum)
+    public void ChoseCharacter(int characterNum) // 0to2
     {
         buttonStatus.Clear();
         buttonStatus.Add(characterNum);
+        characterDataTransfer.GetComponent<CharacterDataTransfer>().UpdateChoseCharacterNum(characterNum);
+
         foreach (int i in buttonStatus)
         {
             Debug.Log(i + "chosen");
@@ -57,4 +60,5 @@ public class ChooseCharacterMangaer : MonoBehaviour
             cautionText.enabled = true;
         }
     }
+
 }

@@ -8,7 +8,6 @@ public class Utilities : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -20,4 +19,5 @@ public class Utilities : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
 }

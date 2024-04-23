@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("wall"))
         {
-            transform.position = transform.position - transform.forward * .5f; // forward 方向に少し戻る
+            transform.position = transform.position - transform.forward * 1f; // forward 方向に少し戻る
         }
     }
 }
