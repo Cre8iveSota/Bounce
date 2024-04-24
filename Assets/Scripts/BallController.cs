@@ -32,6 +32,7 @@ public class BallController : MonoBehaviour
     }
     private void Update()
     {
+        transform.position = new Vector3(transform.position.x, 1, transform.position.z);
         if (gameManager.isGameEnd)
         {
             rigidBody.velocity = Vector3.zero;
