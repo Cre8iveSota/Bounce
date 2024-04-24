@@ -36,7 +36,6 @@ public class MagnetShoot : MonoBehaviour
 
                 direction = new Vector3(x, 0, z);
 
-                Debug.Log("Mouse Position (Screen Space): " + new Vector3(x, 0, z));
                 magnet.transform.position += (direction - new Vector3(transform.position.x, 0, transform.position.z)) * Time.deltaTime * .3f;
                 this.GetComponent<PlayerController>().UpdateStamina(false, -4);
             }

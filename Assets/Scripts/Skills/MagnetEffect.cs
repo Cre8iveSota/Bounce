@@ -12,6 +12,8 @@ public class MagnetEffect : MonoBehaviour
     MagnetShoot magnetShoot;
     GameObject player;
     PlayerController playerController;
+    GameManager gameManager;
+
     Vector3 lastPos;
     void Start()
     {
@@ -21,11 +23,13 @@ public class MagnetEffect : MonoBehaviour
             magnetShoot = player.GetComponent<MagnetShoot>();
         }
         playerController = player.GetComponent<PlayerController>();
+        gameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameManager.isGameEnd) return;
         // When it comes to collision to wall, getting direction is neccessary to make back the bumped character
         if (magnetShoot != null) transform.rotation = Quaternion.LookRotation(magnetShoot.direction);
 

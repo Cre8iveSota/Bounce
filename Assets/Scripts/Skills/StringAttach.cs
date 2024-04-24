@@ -23,7 +23,8 @@ public class StringAttach : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             // if (isAttached) { isReleased = true; isAttached = false; return; }
-            Vector3 direction = (GetNearBall().transform.position - transform.position).normalized;
+            Vector3 direction = Vector3.one;
+            if (GetNearBall() != null) direction = (GetNearBall().transform.position - transform.position).normalized;
             Quaternion rotation = Quaternion.LookRotation(direction);
             particleSystem.transform.rotation = rotation;
             if (!particleSystem.isPlaying)
