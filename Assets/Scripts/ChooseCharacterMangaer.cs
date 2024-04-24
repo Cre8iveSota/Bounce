@@ -45,6 +45,7 @@ public class ChooseCharacterMangaer : MonoBehaviour
     {
         choseCharacterImg.GetComponent<Image>().sprite = characterSourceImg[index];
         if (index == 0) Explanation.text = "Left Click:<br>Dash.<br><br>Right Click:<br>Attach the spider thread to the nearest ball.";
+        else if (index == 1) Explanation.text = "Left Click:<br>Dash.<br><br>Right Click:<br>It can fire and control Magnet, which can pull the ball.";
         else { Explanation.text = ""; }
     }
 

@@ -4962,6 +4962,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6340799320787802358, guid: 25224642f357445e89789e2f8576d652, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340799320787802358, guid: 25224642f357445e89789e2f8576d652, type: 3}
+      propertyPath: m_LookAt
+      value: 
+      objectReference: {fileID: 3209819093063991319}
     - target: {fileID: 6761222463103322158, guid: 25224642f357445e89789e2f8576d652, type: 3}
       propertyPath: magnet
       value: 
@@ -4971,6 +4979,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25224642f357445e89789e2f8576d652, type: 3}
+--- !u!4 &3209819093063991319 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5985495942562816668, guid: 25224642f357445e89789e2f8576d652, type: 3}
+  m_PrefabInstance: {fileID: 3209819093063991318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8301894507442798026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4981,6 +4994,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 296981901865355109, guid: abcadf8a131984ed8ad03226c324911a, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5533419784519442642, guid: abcadf8a131984ed8ad03226c324911a, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6327274639599580128, guid: abcadf8a131984ed8ad03226c324911a, type: 3}
