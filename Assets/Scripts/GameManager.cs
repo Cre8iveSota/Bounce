@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         time += Time.deltaTime;
         if (time < 3 * nextBallTime) return;
         time = 0;
-        nextBallTime *= 4f;
+        nextBallTime *= 3f;
         Instantiate(ballObj, new Vector3(Random.Range(-13, 12), 1, Random.Range(-8, 7)), Quaternion.identity);
     }
     public Vector3 CalcurateUnitVector(Vector3 to, Vector3 from)

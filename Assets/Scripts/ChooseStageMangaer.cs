@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class ChooseStageMangaer : MonoBehaviour
 {
     [SerializeField] private GameObject choseStageImgPanel;
-    [SerializeField] private Sprite[] stageSourceImg = new Sprite[3];
-    [SerializeField] private GameObject[] stageButtons = new GameObject[3];
+    [SerializeField] private Sprite[] stageSourceImg = new Sprite[2];
+    [SerializeField] private GameObject[] stageButtons = new GameObject[2];
     [SerializeField] private TMP_Text cautionText;
     public int choseStageNum;
     // Start is called before the first frame update

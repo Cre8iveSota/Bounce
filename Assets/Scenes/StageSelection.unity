@@ -212,7 +212,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -569,7 +569,7 @@ MonoBehaviour:
   choseStageImgPanel: {fileID: 535006790}
   stageSourceImg:
   - {fileID: 21300000, guid: beea5c7dbe28a40b08e16ab714a20164, type: 3}
-  - {fileID: 21300000, guid: 3b2cd9a0c83ea4540a6a3f718e9b8821, type: 3}
+  - {fileID: 21300000, guid: 0b8dd4b214a6945ab9156ae191e0ab16, type: 3}
   stageButtons:
   - {fileID: 1595717652}
   - {fileID: 23430419}
