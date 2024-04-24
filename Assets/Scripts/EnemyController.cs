@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    Vector3 direction;
+    Vector3 direction, lastPos;
     float moveSpeed = 12;
     private float nearestBallDistance = float.MaxValue;
     private float time;
+    bool isOverriding;
     GameObject[] balls;
     GameObject nearestBall, secondNearestBall, targetBall;
     GameManager gameManager;
@@ -24,7 +25,11 @@ public class EnemyController : MonoBehaviour
     {
         if (gameManager.isGameEnd) return;
         time += Time.deltaTime;
-        if (targetBall != null && !targetBall.GetComponent<BallController>().isAtackingEnemy)
+        if (isOverriding)
+        {
+            direction = gameManager.CalcurateUnitVector(GameObject.FindGameObjectWithTag("Player").transform.position, this.transform.position);
+        }
+        else if (targetBall != null && !targetBall.GetComponent<BallController>().isAtackingEnemy)
         {
             direction = gameManager.CalcurateUnitVector(targetBall.transform.position, this.transform.position);
         }
@@ -36,7 +41,9 @@ public class EnemyController : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(direction);
         }
+
         transform.position += direction.normalized * moveSpeed * Time.deltaTime;
+        lastPos = transform.position;
 
         if (time > 1f) { targetBall = GetNearBall(); time = 0; }
     }
@@ -63,5 +70,17 @@ public class EnemyController : MonoBehaviour
         {
             transform.position = transform.position - transform.forward * 1f; // forward 方向に少し戻る
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Ball")
+        {
+            isOverriding = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        isOverriding = false;
     }
 }
