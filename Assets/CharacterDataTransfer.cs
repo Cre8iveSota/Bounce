@@ -15,10 +15,11 @@ public class CharacterDataTransfer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
     public void UpdateChoseCharacterNum(int num)
     {
+        Utilities.altCharaNum = num;
+        Debug.Log("called: " + num);
         yourCharacter.charaNum = num;
     }
 }

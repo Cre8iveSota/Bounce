@@ -7,6 +7,7 @@ public class Utilities : MonoBehaviour
 {
     // Start is called before the first frame update
     string sceneName;
+    public static int altCharaNum;
     void Start()
     {
         sceneName = SceneManager.GetActiveScene().name;

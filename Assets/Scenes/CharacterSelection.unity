@@ -489,7 +489,7 @@ MonoBehaviour:
   - {fileID: 988555870}
   cautionText: {fileID: 83141382}
   Explanation: {fileID: 1765691167}
-  characterDataTransfer: {fileID: 377498754}
+  characterDataTransferObj: {fileID: 377498754}
 --- !u!1 &535006790
 GameObject:
   m_ObjectHideFlags: 0

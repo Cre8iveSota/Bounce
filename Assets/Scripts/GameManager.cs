@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,26 +14,30 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float enemyMaxHp = 10;
     [SerializeField] GameObject ballObj, gameClearPanel, gameOverPanel;
     [SerializeField] GameObject[] players = new GameObject[2];
-    [SerializeField] private YourCharacter yourCharacter = default;
+    [SerializeField] private YourCharacter yourCharacter;
+    int charaNum;
 
     float time;
     private float nextBallTime = 0.5f;
-    private void Awake()
+
+    void Start()
     {
-        // Instantiate(ballObj, new Vector3(Random.Range(-13, 12), 1, Random.Range(-8, 7)), Quaternion.identity);
-        if (yourCharacter.charaNum == 0)
+        // yourCharacter = AssetDatabase.LoadAssetAtPath<YourCharacter>("Assets/Scripts/YourCharacter.asset");
+        yourCharacter = Resources.Load<YourCharacter>("YourCharacter");
+        if (yourCharacter != null && yourCharacter.charaNum < 10)
         {
-            players[0].SetActive(true);
-            players[1].SetActive(false);
+            charaNum = yourCharacter.charaNum;
+            Debug.Log("test: " + charaNum);
+            CharacterInsert(charaNum);
         }
         else
         {
-            players[0].SetActive(false);
-            players[1].SetActive(true);
+            Debug.Log("failedxxxxxx");
+            charaNum = Utilities.altCharaNum;
+            CharacterInsert(charaNum);
         }
-    }
-    void Start()
-    {
+
+
         time = 0;
         yourCurrentHp = yourMaxHp;
         enemyCurrentHp = enemyMaxHp;
@@ -39,8 +45,9 @@ public class GameManager : MonoBehaviour
         this.ImgsFDenemy.SetValue(enemyCurrentHp / enemyMaxHp, false);
         gameClearPanel.SetActive(false);
         gameOverPanel.SetActive(false);
-        GetCharacterNum();
     }
+
+
     private void Update()
     {
         if (isGameEnd) return;
@@ -49,6 +56,19 @@ public class GameManager : MonoBehaviour
         time = 0;
         nextBallTime *= 3f;
         Instantiate(ballObj, new Vector3(Random.Range(-13, 12), 1, Random.Range(-8, 7)), Quaternion.identity);
+    }
+    private void CharacterInsert(int num)
+    {
+        if (num == 0)
+        {
+            players[0].SetActive(true);
+            players[1].SetActive(false);
+        }
+        else if (num == 1)
+        {
+            players[0].SetActive(false);
+            players[1].SetActive(true);
+        }
     }
     public Vector3 CalcurateUnitVector(Vector3 to, Vector3 from)
     {
@@ -92,10 +112,5 @@ public class GameManager : MonoBehaviour
                 isGameEnd = true;
             }
         }
-    }
-
-    public void GetCharacterNum()
-    {
-        Debug.Log(yourCharacter.charaNum);
     }
 }
