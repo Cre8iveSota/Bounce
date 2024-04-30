@@ -8,7 +8,7 @@ using UnityEngine;
 public class YourCharacter : UnityEngine.ScriptableObject, ISerializationCallbackReceiver
 {
     [SerializeField] private int initCharaNum = default;
-    [NonSerialized] public int charaNum;
+    public int charaNum;
 
     public void OnAfterDeserialize()
     {

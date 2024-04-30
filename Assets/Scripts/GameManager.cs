@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         if (yourCharacter != null && yourCharacter.charaNum < 10)
         {
             charaNum = yourCharacter.charaNum;
-            Debug.Log("test: " + charaNum);
+            Debug.Log("testtttt: " + charaNum);
             CharacterInsert(charaNum);
         }
         else

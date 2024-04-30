@@ -35,6 +35,7 @@ public class ChooseCharacterMangaer : MonoBehaviour
     {
         buttonStatus.Clear();
         buttonStatus.Add(characterNum);
+        Debug.Log("test: " + characterNum);
         characterDataTransfer.UpdateChoseCharacterNum(characterNum);
 
         foreach (int i in buttonStatus)

@@ -36,7 +36,7 @@ public class MagnetShoot : MonoBehaviour
 
                 direction = new Vector3(x, 0, z);
 
-                magnet.transform.position += (direction - new Vector3(transform.position.x, 0, transform.position.z)) * Time.deltaTime * .3f;
+                magnet.transform.position += (direction - new Vector3(transform.position.x, 0, transform.position.z)) * Time.deltaTime * 1.0f;
                 this.GetComponent<PlayerController>().UpdateStamina(false, -4);
             }
         }
