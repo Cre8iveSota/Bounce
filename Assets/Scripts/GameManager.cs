@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +10,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject ballObj, gameClearPanel, gameOverPanel;
     [SerializeField] GameObject[] players = new GameObject[2];
     [SerializeField] private YourCharacter yourCharacter;
+    [SerializeField] private GameObject hitPrefabObj;
+    ParticleSystem particle;
+    GameObject player, enemy;
+    public float gameTime;
     int charaNum;
 
     float time;
@@ -45,11 +44,15 @@ public class GameManager : MonoBehaviour
         this.ImgsFDenemy.SetValue(enemyCurrentHp / enemyMaxHp, false);
         gameClearPanel.SetActive(false);
         gameOverPanel.SetActive(false);
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
 
     private void Update()
     {
+        gameTime += Time.deltaTime;
         if (isGameEnd) return;
         time += Time.deltaTime;
         if (time < 3 * nextBallTime) return;
@@ -59,17 +62,20 @@ public class GameManager : MonoBehaviour
     }
     private void CharacterInsert(int num)
     {
-        if (num == 0)
+        foreach (GameObject eachPlayer in players)
         {
-            players[0].SetActive(true);
-            players[1].SetActive(false);
-        }
-        else if (num == 1)
-        {
-            players[0].SetActive(false);
-            players[1].SetActive(true);
+            int index = System.Array.IndexOf(players, eachPlayer);
+            if (index == num)
+            {
+                players[index].SetActive(true);
+            }
+            else
+            {
+                players[index].SetActive(false);
+            }
         }
     }
+
     public Vector3 CalcurateUnitVector(Vector3 to, Vector3 from)
     {
         // return new Vector3((from.x - to.x) / math.sqrt(math.pow(from.x, 2) + math.pow(to.x, 2)), (from.y - to.y) / math.sqrt(math.pow(from.y, 2) + math.pow(to.y, 2)), (from.z - to.z) / math.sqrt(math.pow(from.z, 2) + math.pow(to.z, 2)));
@@ -89,26 +95,34 @@ public class GameManager : MonoBehaviour
         if (isTargetPlaer)
         {
             if (isGameEnd) return;
+            SoundManager.instance.PlaySE(2);
             yourCurrentHp--;
             Debug.Log("pl hp: " + yourCurrentHp);
             this.ImgsFDplayer.SetValue(yourCurrentHp / yourMaxHp);
-
+            GameObject hitPrefab = Instantiate(hitPrefabObj, player.transform);
+            if (charaNum == 0) { hitPrefab.transform.localScale = new Vector3(4f, 4f, 4f); }
+            else { hitPrefab.transform.localScale = new Vector3(2f, 2f, 2f); }
+            Destroy(hitPrefab, 1);
             if (yourCurrentHp == 0)
             {
                 gameOverPanel.SetActive(true);
+                SoundManager.instance.PlaySE(6);
                 isGameEnd = true;
             }
         }
         else
         {
             if (isGameEnd) return;
+            SoundManager.instance.PlaySE(2);
             enemyCurrentHp--;
             Debug.Log("en hp: " + enemyCurrentHp);
             this.ImgsFDenemy.SetValue(enemyCurrentHp / enemyMaxHp);
-
+            GameObject hitPrefab = Instantiate(hitPrefabObj, enemy.transform);
+            Destroy(hitPrefab, 1);
             if (enemyCurrentHp == 0)
             {
                 gameClearPanel.SetActive(true);
+                SoundManager.instance.PlaySE(5);
                 isGameEnd = true;
             }
         }
