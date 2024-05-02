@@ -8,6 +8,7 @@ public class MagnetShoot : MonoBehaviour
 {
     public GameObject magnet;
     public Vector3 direction;
+    float timeCnt;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class MagnetShoot : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
+        timeCnt += Time.deltaTime;
         if (this.GetComponent<PlayerController>().currentStamina < 0.1f)
         {
             magnet.GetComponent<MagnetEffect>().enable = false;
@@ -38,6 +39,12 @@ public class MagnetShoot : MonoBehaviour
 
                 magnet.transform.position += (direction - new Vector3(transform.position.x, 0, transform.position.z)) * Time.deltaTime * 1.0f;
                 this.GetComponent<PlayerController>().UpdateStamina(false, -4);
+
+                if (timeCnt > 1)
+                {
+                    SoundManager.instance.PlaySE(8);
+                    timeCnt = 0;
+                }
             }
         }
         else
