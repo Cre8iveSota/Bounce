@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: YourCharacter
   m_EditorClassIdentifier: 
   initCharaNum: 1000
+  charaNum: 1000

@@ -29,7 +29,9 @@ public class PlayerController : MonoBehaviour
     {
         canRun = currentStamina / maxStamina > 0 ? true : false;
         if (gameManager.isGameEnd) return;
-        if (gameManager.gameTime - lastBumpedTime > .15f) vcam.enabled = true; // This is necessary for stopping camera shaking when player get refrection against from walls
+        // This is necessary for stopping camera shaking when player get refrection against from walls
+        // If this code is not written, camera shaking is gonna happen due to the stepping back by OnTrrigerEnter one
+        if (gameManager.gameTime - lastBumpedTime > .15f) vcam.enabled = true;
         #region PLAYER MOVEMENT
         if (Input.GetKey(KeyCode.Mouse0) && canRun)
         {
