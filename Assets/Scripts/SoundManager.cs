@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
     private readonly int totalPlayingTweens = DOTween.TotalPlayingTweens();
     int seCount = 0;
+    float volume;
+
+
     //SoundManager.instance.PlaySE(4);
     private void Awake()
     {
@@ -21,11 +25,11 @@ public class SoundManager : MonoBehaviour
             instance = this;
             //Ensure that sound is not interrupted when transitioning between scenes
             DontDestroyOnLoad(this.gameObject);
-            // DOTweenの初期化
-            DOTween.Init();
+            // // DOTweenの初期化
+            // DOTween.Init();
 
-            // トゥイーンの容量を手動で設定
-            DOTween.SetTweensCapacity(2000, 100);
+            // // トゥイーンの容量を手動で設定
+            // DOTween.SetTweensCapacity(2000, 100);
         }
         else
         {
@@ -34,12 +38,12 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-
     public void StopBGM()
     {
         audioSourceBGM.Stop();
     }
-    public void PlayBGM(int sceneIndex)
+
+    public void PlayBGM(string sceneName)
     {
         float fadeOutDuration = 1f;
         audioSourceBGM.DOFade(0f, fadeOutDuration).OnComplete(() =>
@@ -48,14 +52,17 @@ public class SoundManager : MonoBehaviour
             audioSourceBGM.Stop();
 
             // 新しい BGM を設定
-            switch (sceneIndex)
+            switch (sceneName)
             {
                 default:
-                case 0:
+                case "Start":
                     audioSourceBGM.clip = audioClipsBGM[0];
                     break;
-                case 1:
+                case "Stage1":
                     audioSourceBGM.clip = audioClipsBGM[1];
+                    break;
+                case "Stage2":
+                    audioSourceBGM.clip = audioClipsBGM[2];
                     break;
             }
 
@@ -66,35 +73,50 @@ public class SoundManager : MonoBehaviour
             audioSourceBGM.DOFade(.5f, fadeInDuration);
         });
     }
+    // public void PlayBGM(int sceneIndex)
+    // {
+    //     float fadeOutDuration = 1f;
+    //     audioSourceBGM.DOFade(0f, fadeOutDuration).OnComplete(() =>
+    //     {
+    //         // BGM 停止
+    //         audioSourceBGM.Stop();
+
+    //         // 新しい BGM を設定
+    //         switch (sceneIndex)
+    //         {
+    //             default:
+    //             case 0:
+    //                 audioSourceBGM.clip = audioClipsBGM[0];
+    //                 break;
+    //             case 1:
+    //                 audioSourceBGM.clip = audioClipsBGM[1];
+    //                 break;
+    //         }
+
+    //         // BGM フェードイン
+    //         float fadeInDuration = 1f;
+    //         audioSourceBGM.volume = 0f;
+    //         audioSourceBGM.Play();
+    //         audioSourceBGM.DOFade(.5f, fadeInDuration);
+    //     });
+    // }
 
     public void PlaySE(int index)
     {
         seCount++;
-
-        Debug.Log("totalPlayingTweens se " + totalPlayingTweens);
-        Debug.Log("totalPlayingTweens seCount " + seCount);
-        if (totalPlayingTweens > 1)
+        if (index == 3)
         {
-            int killNum = DOTween.KillAll(true);
-            StopAllSE();
-            Debug.Log("totalPlayingTweenskillNum " + killNum);
-        }
-        else if (seCount < 10)
-        {
-            // audioSourceSE.PlayOneShot(audioClipsSE[index]); // SEを一度だけ鳴らす
-            audioSourceSE.DOFade(1f, 0f).OnComplete(() =>
-            {
-                audioSourceSE.PlayOneShot(audioClipsSE[index]);
-                seCount--;
-            }
-            );
+            volume = .5f;
         }
         else
         {
-            int killNum = DOTween.KillAll(true);
-            StopAllSE();
-            Debug.Log("totalPlayingTweenskillNum " + killNum);
+            volume = 1;
         }
+        audioSourceSE.DOFade(volume, 0f).OnComplete(() =>
+        {
+            audioSourceSE.PlayOneShot(audioClipsSE[index]);
+            seCount--;
+        });
     }
 
 
@@ -129,5 +151,4 @@ public class SoundManager : MonoBehaviour
             audioSourceBGM.DOFade(1f, fadeInDuration);
         });
     }
-
 }

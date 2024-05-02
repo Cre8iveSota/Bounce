@@ -38,6 +38,7 @@ public class ChooseStageMangaer : MonoBehaviour
         if (choseStageNum != 0 && choseStageNum != 3 && choseStageNum != 4 && choseStageNum != 5)
         {
             cautionText.enabled = false;
+            SoundManager.instance.PlaySE(0);
             FadeIOManager.instane.FadeOutToIn(() => SceneManager.LoadScene($"Stage{choseStageNum}"));
         }
         else

@@ -10,7 +10,8 @@ public class StringAttach : MonoBehaviour
     private float nearestBallDistance = float.MaxValue;
     public bool isAttached;
     public bool isReleased;
-
+    private float cnt;
+    private bool enableSfxString;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +30,13 @@ public class StringAttach : MonoBehaviour
             particleSystem.transform.rotation = rotation;
             if (!particleSystem.isPlaying)
             {
+                enableSfxString = true;
                 particleSystem.Play();
             }
         }
         else
         {
+            enableSfxString = false;
             if (particleSystem.isPlaying)
             {
                 particleSystem.Stop();
@@ -46,6 +49,17 @@ public class StringAttach : MonoBehaviour
             Vector3 direction = (GetNearBall().transform.position - transform.position).normalized;
             Quaternion rotation = Quaternion.LookRotation(direction);
             particleSystem.transform.rotation = rotation;
+        }
+
+        if ((isAttached && cnt > 1) || enableSfxString)
+        {
+            enableSfxString = false;
+            cnt = 0;
+            SoundManager.instance.PlaySE(3);
+        }
+        else
+        {
+            cnt += Time.deltaTime;
         }
     }
     private GameObject GetNearBall()

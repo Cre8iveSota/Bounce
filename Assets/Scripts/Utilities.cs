@@ -8,10 +8,14 @@ public class Utilities : MonoBehaviour
     // Start is called before the first frame update
     string sceneName;
     public static int altCharaNum;
+    static private int BGMplayNum = 0; // For using same bgm apart from Buttle Scene, this variable is employed
     void Start()
     {
+        BGMplayNum++;
         sceneName = SceneManager.GetActiveScene().name;
-        BGMSelecter(sceneName);
+        if (sceneName == "Stage1") { SoundManager.instance.PlayBGM(sceneName); BGMplayNum = 0; }
+        else if (sceneName == "Stage2") { SoundManager.instance.PlayBGM(sceneName); BGMplayNum = 0; }
+        else if (BGMplayNum == 1) SoundManager.instance.PlayBGM(sceneName);
     }
 
     // Update is called once per frame
@@ -20,32 +24,7 @@ public class Utilities : MonoBehaviour
     }
     public void LoadScene(string sceneName)
     {
-        // SoundManager.instance.PlaySE(0); // TODO
+        SoundManager.instance.PlaySE(0);
         FadeIOManager.instane.FadeOutToIn(() => SceneManager.LoadScene(sceneName));
-    }
-
-    private void BGMSelecter(string sceneName)
-    {
-        switch (sceneName)
-        {
-            // case "Start": 
-            //     SoundManager.instance.PlayBGM(0);
-            //     break;
-            // case "HowtoPlay":
-            //     SoundManager.instance.PlayBGM(0);
-            //     break;
-            // case "CharacterSelection":
-            //     SoundManager.instance.PlayBGM(0);
-            //     break;
-            // case "StageSelection":
-            //     SoundManager.instance.PlayBGM(0);
-            //     break;
-            // case "Stage1":
-            //     SoundManager.instance.PlayBGM(0);
-            //     break;
-            // case "Stage2":
-            //     SoundManager.instance.PlayBGM(0);
-            //     break;
-        }
     }
 }

@@ -72,7 +72,7 @@ public class MagnetEffect : MonoBehaviour
             {
                 ball.transform.SetParent(this.transform, false);
                 ball.transform.localScale = Vector3.one * 4;
-                ball.GetComponent<BallController>().ChangeOwnerPlayer(true);
+                ball.GetComponent<BallController>().ChangeOwnerPlayer(true, true);
                 ball.GetComponent<BallController>().isAtackingPlayer = false;
                 ball.GetComponent<BallController>().vfxEnemy.SetActive(false);
             }

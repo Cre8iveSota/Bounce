@@ -13,6 +13,7 @@ public class StringEffect : MonoBehaviour
     private float time;
     float angle;
     bool isCatched;
+
     private void Start()
     {
         ball = this.gameObject;
@@ -33,7 +34,7 @@ public class StringEffect : MonoBehaviour
             Vector3 offset = new Vector3(Mathf.Sin(angle), .2f, Mathf.Cos(angle)) * radius;
             ball.transform.position = player.transform.position + offset;
             player.GetComponent<StringAttach>().isAttached = true; ;
-            ballController.ChangeOwnerPlayer(true);
+            ballController.ChangeOwnerPlayer(true, true);
             player.GetComponent<PlayerController>().UpdateStamina(false, -3);
         }
         else if (ballController != null)

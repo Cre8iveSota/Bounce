@@ -16,6 +16,7 @@ public class BallController : MonoBehaviour
     Renderer renderer;
     private Vector3 unitVector, velocity;
     private Rigidbody rigidBody;
+    float sfxTimer;
     GameManager gameManager;
     public bool isPermittedControlPlayer, isPermittedControlEnemy;
     void Start()
@@ -47,12 +48,14 @@ public class BallController : MonoBehaviour
 
         if (isAtackingEnemy)
         {
+            InvokeSFXinUpdate();
             vfxPlayer.SetActive(true);
             velocity = unitVector * 40;
             rigidBody.velocity = velocity;
         }
         else if (isAtackingPlayer)
         {
+            InvokeSFXinUpdate();
             vfxEnemy.SetActive(true);
             velocity = unitVector * 40;
             rigidBody.velocity = velocity;
@@ -84,7 +87,7 @@ public class BallController : MonoBehaviour
             }
             else if (isAtackingPlayer == false)
             {
-                ChangeOwnerPlayer(true);
+                ChangeOwnerPlayer(true, false);
             }
             else
             {
@@ -102,7 +105,7 @@ public class BallController : MonoBehaviour
             }
             else if (isAtackingEnemy == false)
             {
-                ChangeOwnerPlayer(false);
+                ChangeOwnerPlayer(false, false);
             }
             else
             {
@@ -112,8 +115,9 @@ public class BallController : MonoBehaviour
         }
     }
 
-    public void ChangeOwnerPlayer(bool isPlayerBall)
+    public void ChangeOwnerPlayer(bool isPlayerBall, bool callFromExCode)
     {
+        if (!callFromExCode) SoundManager.instance.PlaySE(4);
         if (isPlayerBall)
         {
             renderer.material = playerMt;
@@ -123,6 +127,16 @@ public class BallController : MonoBehaviour
         {
             renderer.material = enemyMt;
             currentOwner = (int)OwnerName.Enemy;
+        }
+    }
+
+    void InvokeSFXinUpdate()
+    {
+        sfxTimer += Time.deltaTime;
+        if (sfxTimer > .5f)
+        {
+            sfxTimer = 0;
+            SoundManager.instance.PlaySE(1);
         }
     }
 }
