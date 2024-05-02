@@ -54,6 +54,7 @@ public class EnemyController : MonoBehaviour
         nearestBallDistance = float.MaxValue;
         for (int i = 0; i < balls.Length; i++)
         {
+            if (balls[i].GetComponent<BallController>().isPermittedControlPlayer) continue;
             float diff = Vector3.Distance(balls[i].transform.position, transform.position);
             if (diff < nearestBallDistance)
             {
