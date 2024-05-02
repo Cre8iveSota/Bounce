@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,13 +12,16 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed;
     private int speedDashRate;
     bool canRun = true;
+    float lastBumpedTime;
     GameManager gameManager;
+    CinemachineVirtualCamera vcam;
     // Start is called before the first frame update
     void Start()
     {
         currentStamina = maxStamina;
         staminaGauge.SetValue(currentStamina / maxStamina);
         gameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
+        vcam = GameObject.FindGameObjectWithTag("VC").GetComponent<CinemachineVirtualCamera>();
     }
 
     // Update is called once per frame
@@ -25,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         canRun = currentStamina / maxStamina > 0 ? true : false;
         if (gameManager.isGameEnd) return;
+        if (gameManager.gameTime - lastBumpedTime > .15f) vcam.enabled = true; // This is necessary for stopping camera shaking when player get refrection against from walls
         #region PLAYER MOVEMENT
         if (Input.GetKey(KeyCode.Mouse0) && canRun)
         {
@@ -49,7 +54,6 @@ public class PlayerController : MonoBehaviour
         direction = Vector3.ClampMagnitude(direction, 1f);
         transform.position += direction * moveSpeed * Time.deltaTime;
         // RestrectionMovement();
-
         if (direction != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(direction);
@@ -95,6 +99,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("wall"))
         {
+            lastBumpedTime = gameManager.gameTime;
+            vcam.enabled = false;
             transform.position = transform.position - transform.forward * 1f; // forward 方向に少し戻る
         }
     }
