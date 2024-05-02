@@ -23,12 +23,8 @@ public class ChooseCharacterMangaer : MonoBehaviour
         characterButtons[2].GetComponent<Image>().sprite = characterSourceImg[2];
         cautionText.enabled = false;
         characterDataTransfer = characterDataTransferObj.GetComponent<CharacterDataTransfer>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        buttonStatus.Clear();
     }
 
     public void ChoseCharacter(int characterNum) // 0to2
@@ -54,9 +50,10 @@ public class ChooseCharacterMangaer : MonoBehaviour
 
     public void LoadGame(string sceneName)
     {
-        if (buttonStatus.Count != 0 && buttonStatus[0] != 2)
+        if (buttonStatus.Count != 0)
         {
             cautionText.enabled = false;
+            SoundManager.instance.PlaySE(0);
             SceneManager.LoadScene(sceneName);
         }
         else
