@@ -64,6 +64,9 @@ public class SoundManager : MonoBehaviour
                 case "Stage2":
                     audioSourceBGM.clip = audioClipsBGM[2];
                     break;
+                case "Stage3":
+                    audioSourceBGM.clip = audioClipsBGM[3];
+                    break;
             }
 
             // BGM フェードイン

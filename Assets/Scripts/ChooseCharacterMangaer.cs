@@ -43,9 +43,9 @@ public class ChooseCharacterMangaer : MonoBehaviour
     private void InsertCharacterImage(int index)
     {
         choseCharacterImg.GetComponent<Image>().sprite = characterSourceImg[index];
-        if (index == 0) Explanation.text = "Left Click:<br>Dash.<br><br>Right Click:<br>Attach the spider thread to the nearest ball.";
-        else if (index == 1) Explanation.text = "Left Click:<br>Dash.<br><br>Right Click:<br>It can fire and control Magnet, which can pull the ball.";
-        else if (index == 2) { Explanation.text = "This character is currently under construction. Please await the next update."; }
+        if (index == 0) Explanation.text = "Left Click:<br>Run.<br><br>Right Click:<br>Attach the spider thread to the nearest ball.Can attack by spinning a ball with spider threads.";
+        else if (index == 1) Explanation.text = "Left Click:<br>Run.<br><br>Right Click:<br>It can fire and control Magnet, which can pull the ball.";
+        else if (index == 2) { Explanation.text = "Left Click:<br>Run.<br><br>Right Click:<br>Shields can appear for 1 second depending on the direction of the mouse. Balls that hit the shield can be coloured green."; }
     }
 
     public void LoadGame(string sceneName)

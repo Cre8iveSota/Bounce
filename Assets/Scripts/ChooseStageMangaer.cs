@@ -35,7 +35,7 @@ public class ChooseStageMangaer : MonoBehaviour
 
     public void LoadGame()
     {
-        if (choseStageNum != 0 && choseStageNum != 3 && choseStageNum != 4 && choseStageNum != 5)
+        if (choseStageNum != 0 && choseStageNum != 4 && choseStageNum != 5)
         {
             cautionText.enabled = false;
             SoundManager.instance.PlaySE(0);
