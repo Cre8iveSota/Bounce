@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     float lastBumpedTime;
     GameManager gameManager;
     CinemachineVirtualCamera vcam;
+    float time;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,11 +28,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        canRun = currentStamina / maxStamina > 0 ? true : false;
+        time += Time.deltaTime;
         if (gameManager.isGameEnd) return;
+        canRun = currentStamina / maxStamina > 0;
         // This is necessary for stopping camera shaking when player get refrection against from walls
         // If this code is not written, camera shaking is gonna happen due to the stepping back by OnTrrigerEnter one
-        if (gameManager.gameTime - lastBumpedTime > .15f) vcam.enabled = true;
+        if (gameManager.ballTimer - lastBumpedTime > .15f) { vcam.enabled = true; }
+        else
+        {
+            canRun = false; // while you bumped into walls, you cannot run: This is because if you can run, it might penetrate walls
+        }
+
         #region PLAYER MOVEMENT
         if (Input.GetKey(KeyCode.Mouse0) && canRun)
         {
@@ -101,7 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("wall"))
         {
-            lastBumpedTime = gameManager.gameTime;
+            lastBumpedTime = gameManager.ballTimer;
             vcam.enabled = false;
             transform.position = transform.position - transform.forward * 1f; // forward 方向に少し戻る
         }

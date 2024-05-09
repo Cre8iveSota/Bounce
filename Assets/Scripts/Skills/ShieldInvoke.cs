@@ -21,7 +21,7 @@ public class ShieldInvoke : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse1) && playerController.currentStamina > 2f)
         {
-            playerController.UpdateStamina(false, -1200);
+            playerController.UpdateStamina(false, -3 / Time.deltaTime);
             SoundManager.instance.PlaySE(7);
             GameObject shildPrefab = Instantiate(shieldPrefabObj, new Vector3(
             transform.position.x + directIndicater.shieldPosOffset.x,

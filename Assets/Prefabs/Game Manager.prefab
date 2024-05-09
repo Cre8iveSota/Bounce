@@ -55,5 +55,12 @@ MonoBehaviour:
   players:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  icons:
+  - {fileID: 21300000, guid: c22d57d7b21da4e21b40e077fdb1d871, type: 3}
+  - {fileID: 21300000, guid: b9d86c580b4fb4e8d8cdb7c0e082a734, type: 3}
+  - {fileID: 21300000, guid: 837da910a2cbc4005bbb24c38cf56a5d, type: 3}
+  playerIcon: {fileID: 0}
   yourCharacter: {fileID: 11400000, guid: 69f8c7370e5f247d08379cf0cb9aa578, type: 2}
   hitPrefabObj: {fileID: 7998382215923843085, guid: dae86282149ea449c97c2fbc6d803012, type: 3}
+  gameTime: 0

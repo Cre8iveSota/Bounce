@@ -31,6 +31,7 @@ public class StartPanelController : MonoBehaviour
         time += Time.deltaTime;
         if (time > 3f)
         {
+            gameManager.isGameStart = true;
             gameManager.isGameEnd = false;
             startPanel.SetActive(false);
             textAnimateRotateAndEnlarge.enabled = false;

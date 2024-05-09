@@ -86,6 +86,21 @@ public class MagnetEffect : MonoBehaviour
         }
     }
 
+    public bool GetBallsControlable()
+    {
+        bool ret = false;
+        affectedBalls = GameObject.FindGameObjectsWithTag("Ball");
+        foreach (GameObject ball in affectedBalls)
+        {
+            if (ball.GetComponent<BallController>().isPermittedControlPlayer)
+            {
+                ret = true;
+                break;
+            }
+        }
+        return ret;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("wall"))

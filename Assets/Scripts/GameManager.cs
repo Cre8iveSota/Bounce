@@ -1,19 +1,24 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public ImgsFillDynamic ImgsFDplayer, ImgsFDenemy;
-    public bool isGameEnd;
+    public bool isGameEnd, isGameStart;
     private float yourCurrentHp, enemyCurrentHp;
     [SerializeField] private float yourMaxHp = 10;
     [SerializeField] private float enemyMaxHp = 10;
     [SerializeField] GameObject ballObj, gameClearPanel, gameOverPanel;
-    [SerializeField] GameObject[] players = new GameObject[2];
+    [SerializeField] GameObject[] players = new GameObject[3];
+    [SerializeField] Sprite[] icons = new Sprite[3];
+    [SerializeField] Image playerIcon;
     [SerializeField] private YourCharacter yourCharacter;
     [SerializeField] private GameObject hitPrefabObj;
+    [SerializeField] private TMP_Text gameTimer;
     ParticleSystem particle;
     GameObject player, enemy;
-    public float gameTime;
+    public float ballTimer, gameTime;
     int charaNum;
 
     float time;
@@ -52,8 +57,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        gameTime += Time.deltaTime;
+        ballTimer += Time.deltaTime;
         if (isGameEnd) return;
+        if (isGameStart)
+        {
+            gameTime += Time.deltaTime;
+            gameTimer.text = $"{gameTime / 60:0}:{gameTime % 60:00}";
+        }
         time += Time.deltaTime;
         if (time < 3 * nextBallTime) return;
         time = 0;
@@ -68,6 +78,7 @@ public class GameManager : MonoBehaviour
             if (index == num)
             {
                 players[index].SetActive(true);
+                playerIcon.sprite = icons[index];
             }
             else
             {

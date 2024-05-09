@@ -1,8 +1,9 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    public float Speed = 1000;
+    [SerializeField] private float speed = 750;
     public int currentOwner;
     public enum OwnerName : int { NoOne = 0, Player = 1, Enemy = 2 }
     public bool isAtackingEnemy, isAtackingPlayer;
@@ -27,7 +28,7 @@ public class BallController : MonoBehaviour
         currentOwner = (int)OwnerName.NoOne;
         gameManager = GameObject.FindGameObjectWithTag("GM").GetComponent<GameManager>();
         rigidBody = GetComponent<Rigidbody>();
-        rigidBody.AddForce(Direction.normalized * Speed * Time.deltaTime, ForceMode.Impulse);
+        rigidBody.AddForce(Direction.normalized * speed * Time.deltaTime, ForceMode.Impulse);
         if (enemy == null) enemy = GameObject.FindGameObjectWithTag("Enemy").gameObject;
         if (player == null) player = GameObject.FindGameObjectWithTag("Player").gameObject;
     }
@@ -50,14 +51,14 @@ public class BallController : MonoBehaviour
         {
             InvokeSFXinUpdate();
             vfxPlayer.SetActive(true);
-            velocity = unitVector * 40;
+            velocity = unitVector * 35;
             rigidBody.velocity = velocity;
         }
         else if (isAtackingPlayer)
         {
             InvokeSFXinUpdate();
             vfxEnemy.SetActive(true);
-            velocity = unitVector * 40;
+            velocity = unitVector * 35;
             rigidBody.velocity = velocity;
         }
         else
@@ -67,7 +68,7 @@ public class BallController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        rigidBody.velocity = rigidBody.velocity.normalized * Speed * Time.deltaTime;
+        rigidBody.velocity = rigidBody.velocity.normalized * speed * Time.deltaTime;
         if (collision.gameObject.tag == "wall")
         {
             isAtackingEnemy = false;
