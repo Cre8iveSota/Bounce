@@ -16,6 +16,8 @@ public class Utilities : MonoBehaviour
         if (sceneName == "Stage1") { SoundManager.instance.PlayBGM(sceneName); BGMplayNum = 0; }
         else if (sceneName == "Stage2") { SoundManager.instance.PlayBGM(sceneName); BGMplayNum = 0; }
         else if (sceneName == "Stage3") { SoundManager.instance.PlayBGM(sceneName); BGMplayNum = 0; }
+        else if (sceneName == "Stage4") { SoundManager.instance.PlayBGM(sceneName); BGMplayNum = 0; }
+        else if (sceneName == "Stage5") { SoundManager.instance.PlayBGM(sceneName); BGMplayNum = 0; }
         else if (BGMplayNum == 1) SoundManager.instance.PlayBGM(sceneName);
     }
 

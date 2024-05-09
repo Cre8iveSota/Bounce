@@ -19,6 +19,7 @@ public class ChooseStageMangaer : MonoBehaviour
         stageButtons[1].GetComponent<Image>().sprite = stageSourceImg[1];
         stageButtons[2].GetComponent<Image>().sprite = stageSourceImg[2];
         stageButtons[3].GetComponent<Image>().sprite = stageSourceImg[3];
+        stageButtons[4].GetComponent<Image>().sprite = stageSourceImg[4];
         cautionText.enabled = false;
     }
 
@@ -36,7 +37,7 @@ public class ChooseStageMangaer : MonoBehaviour
 
     public void LoadGame()
     {
-        if (choseStageNum != 0 && choseStageNum != 5)
+        if (choseStageNum != 0)
         {
             cautionText.enabled = false;
             SoundManager.instance.PlaySE(0);
